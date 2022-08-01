@@ -1,0 +1,98 @@
+[2022-08-01 00:47:12] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 00:47:14] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 00:47:28] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 01:11:23] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 09:08:03] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 11:02:40] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 11:37:07] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 11:40:54] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 17:17:02] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 17:53:11] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 17:53:18] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 17:53:21] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 18:02:06] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 18:13:31] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 18:14:07] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 18:19:22] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 18:57:13] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 18:59:31] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:12:04] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:23:39] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:23:42] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:24:21] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:24:37] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:25:34] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:25:48] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:26:06] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:26:36] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:29:59] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:30:09] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:30:23] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:31:18] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:33:15] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:34:20] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 20:47:30] [WARNING]: Protocol -> device lock is disable. http api may fail. 
+[2022-08-01 20:48:08] [WARNING]: Protocol -> device lock is disable. http api may fail. 
+[2022-08-01 20:48:32] [WARNING]: 检查更新失败: Get "https://api.github.com/repos/Mrs4s/go-cqhttp/releases/latest": dial tcp 20.205.243.168:443: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. 
+[2022-08-01 20:56:23] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 1 次重试 
+[2022-08-01 20:56:26] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 1 次重试 
+[2022-08-01 20:56:29] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 2 次重试 
+[2022-08-01 20:56:31] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": read tcp 127.0.0.1:51352->127.0.0.1:5701: wsarecv: An existing connection was forcibly closed by the remote host. 将进行第 2 次重试 
+[2022-08-01 20:56:32] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 3 次重试 
+[2022-08-01 20:56:33] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 3 次重试 
+[2022-08-01 20:56:34] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 4 次重试 
+[2022-08-01 20:56:36] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 4 次重试 
+[2022-08-01 20:56:37] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 5 次重试 
+[2022-08-01 20:56:38] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 5 次重试 
+[2022-08-01 20:56:42] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 6 次重试 
+[2022-08-01 20:56:43] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 6 次重试 
+[2022-08-01 20:56:45] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 7 次重试 
+[2022-08-01 20:56:46] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 7 次重试 
+[2022-08-01 20:56:46] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 1 次重试 
+[2022-08-01 20:56:48] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 8 次重试 
+[2022-08-01 20:56:48] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 8 次重试 
+[2022-08-01 20:56:49] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 2 次重试 
+[2022-08-01 20:56:50] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 9 次重试 
+[2022-08-01 20:56:51] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 9 次重试 
+[2022-08-01 20:56:51] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 3 次重试 
+[2022-08-01 20:56:53] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 10 次重试 
+[2022-08-01 20:56:53] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 10 次重试 
+[2022-08-01 20:56:54] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 4 次重试 
+[2022-08-01 20:56:55] [WARNING]: 上报 Event 数据 {"post_type":"message","message_type":"private","time":1659358578,"self_id":2132763277,"sub_type":"friend","message":"/求喷","raw_message":"/求喷","font":0,"sender":{"age":0,"nickname":"达布溜杰艾摩","sex":"unknown","user_id":1600842796},"message_id":-270574384,"user_id":1600842796,"target_id":2132763277}
+ 到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 停止上报：已达重试上限 
+[2022-08-01 20:56:56] [WARNING]: 上报 Event 数据 {"post_type":"message","message_type":"private","time":1659358581,"self_id":2132763277,"sub_type":"friend","message_id":-1730646970,"user_id":1600842796,"target_id":2132763277,"message":"1","raw_message":"1","font":0,"sender":{"age":0,"nickname":"达布溜杰艾摩","sex":"unknown","user_id":1600842796}}
+ 到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 停止上报：已达重试上限 
+[2022-08-01 20:56:57] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 5 次重试 
+[2022-08-01 20:56:59] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 6 次重试 
+[2022-08-01 20:57:02] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 7 次重试 
+[2022-08-01 20:57:04] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 8 次重试 
+[2022-08-01 20:57:07] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 9 次重试 
+[2022-08-01 20:57:09] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 10 次重试 
+[2022-08-01 20:57:12] [WARNING]: 上报 Event 数据 {"post_type":"message","message_type":"group","time":1659358605,"self_id":2132763277,"sub_type":"normal","font":0,"sender":{"age":0,"area":"","card":"","level":"","nickname":"达布溜杰艾摩","role":"admin","sex":"unknown","title":"","user_id":1600842796},"message_id":-853309030,"anonymous":null,"group_id":617092385,"message":"骂人的接口寄了","message_seq":29514,"raw_message":"骂人的接口寄了","user_id":1600842796}
+ 到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 停止上报：已达重试上限 
+[2022-08-01 20:57:27] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 1 次重试 
+[2022-08-01 20:57:29] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 1 次重试 
+[2022-08-01 20:57:30] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 2 次重试 
+[2022-08-01 20:57:32] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 2 次重试 
+[2022-08-01 20:57:32] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 3 次重试 
+[2022-08-01 20:57:34] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 3 次重试 
+[2022-08-01 20:57:35] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 4 次重试 
+[2022-08-01 20:57:37] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 4 次重试 
+[2022-08-01 20:57:37] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 5 次重试 
+[2022-08-01 20:57:39] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 5 次重试 
+[2022-08-01 20:57:40] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 6 次重试 
+[2022-08-01 20:57:42] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 6 次重试 
+[2022-08-01 20:57:42] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 7 次重试 
+[2022-08-01 20:57:44] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 7 次重试 
+[2022-08-01 20:57:45] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 8 次重试 
+[2022-08-01 20:57:47] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 8 次重试 
+[2022-08-01 20:57:47] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 9 次重试 
+[2022-08-01 20:57:49] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 9 次重试 
+[2022-08-01 20:57:50] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 10 次重试 
+[2022-08-01 20:57:52] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 将进行第 10 次重试 
+[2022-08-01 20:57:53] [WARNING]: 上报 Event 数据 {"post_type":"message","message_type":"group","time":1659358646,"self_id":2132763277,"sub_type":"normal","message":"测试","sender":{"age":0,"area":"","card":"","level":"","nickname":"TORONTONANKING","role":"admin","sex":"unknown","title":"","user_id":1327179361},"user_id":1327179361,"anonymous":null,"group_id":617092385,"message_seq":29515,"raw_message":"测试","message_id":-1171998452,"font":0}
+ 到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 停止上报：已达重试上限 
+[2022-08-01 20:57:54] [WARNING]: 上报 Event 数据 {"post_type":"message","message_type":"group","time":1659358648,"self_id":2132763277,"sub_type":"normal","anonymous":null,"message_seq":29516,"raw_message":"测试","sender":{"age":0,"area":"","card":"","level":"","nickname":"TORONTONANKING","role":"admin","sex":"unknown","title":"","user_id":1327179361},"user_id":1327179361,"message_id":590211254,"font":0,"group_id":617092385,"message":"测试"}
+ 到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": dial tcp 127.0.0.1:5701: connectex: No connection could be made because the target machine actively refused it. 停止上报：已达重试上限 
+[2022-08-01 21:01:17] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-01 21:02:05] [WARNING]: 群消息发送失败: 信息为空. 
