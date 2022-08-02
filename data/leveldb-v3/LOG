@@ -441,3 +441,17 @@
 20:48:08.678775 version@stat F·[3 1] S·254KiB[37KiB 216KiB] Sc·[0.75 0.00]
 20:48:08.698363 db@janitor F·6 G·0
 20:48:08.698363 db@open done T·27.6582ms
+=============== Aug 2, 2022 (CST) ===============
+11:16:19.217861 memdb@flush N·172 S·30KiB
+11:16:19.223238 memdb@flush created L0@119 N·172 S·19KiB "\x02p\u007f\xa6,v2427":"\xffr!\xba,v2333"
+11:16:19.223238 version@stat F·[4 1] S·274KiB[57KiB 216KiB] Sc·[1.00 0.00]
+11:16:19.234056 memdb@flush committed F·1 T·16.1944ms
+11:16:19.235047 journal@remove removed @116
+11:16:19.235047 table@compaction L0·4 -> L1·1 S·274KiB Q·2505
+11:16:19.346072 table@build created L1@120 N·2313 S·272KiB "\x000\x89\xe9,v1612":"\xff\xfdJ\xd7,v1185"
+11:16:19.346072 version@stat F·[0 1] S·272KiB[0B 272KiB] Sc·[0.00 0.00]
+11:16:19.350137 table@compaction committed F-4 S-1KiB Ke·0 D·22 T·115.087ms
+11:16:19.350137 table@remove removed @119
+11:16:19.350137 table@remove removed @112
+11:16:19.350137 table@remove removed @111
+11:16:19.351062 table@remove removed @109
