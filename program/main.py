@@ -2,11 +2,13 @@ from cgitb import html
 import json
 import os
 import datetime
+import threading
 import time
 import requests
 import lxml
 import random
 import re
+import schedule
 import socket
 from bs4 import BeautifulSoup
 from receive import rev_msg
@@ -95,12 +97,10 @@ def getCover(query):
 
 def getMagnet(tag):     # 返回组装好的msg
     headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; '
-                    'Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-        "cookie": 'challenge=a0909810a6d132832e28ef6da18ec77c; ex=1; _ga=GA1.1.1219266099.1658377796; '
-                '_ga_W7KV15XZN0=GS1.1.1658376347.1.1.1658378489.0'
+        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36 Edg/103.0.1264.77',
+        "cookie": 'challenge=4ca42f78fda437582e77b9f9a45c3376; ex=1'
     }
-    url = 'https://clm5.xyz/search'
+    url = 'https://clm8.in/search'
     data = {
         'word': tag
     }
@@ -116,7 +116,7 @@ def getMagnet(tag):     # 返回组装好的msg
         i += 1
     bf = BeautifulSoup(txt,'lxml')
     list1 = bf.find_all("a", "SearchListTitle_result_title")    #search result
-    subUrlPrefix = 'https://clm5.xyz'
+    subUrlPrefix = 'https://clm8.in'
     msg = ""
     i = 0
     for item in list1:
@@ -309,6 +309,17 @@ def getAvaVoice():
     msg = '[CQ:record,file=./ava/{}]'.format(filename)
     return msg
 
+def sendWakeUp(day):
+    sendGroupMessage(id="617092385", message="[CQ:record,file=./wakeup/{}]".format(wakeupList[day]))
+
+def scheduleWork():
+    now = datetime.datetime.now()
+    schedule.every().day.at("08:00").do(sendWakeUp,(now.day)%5)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+
 staticReply = [
     "别狗叫",
     "窝嫩爹",
@@ -321,17 +332,12 @@ print("STARTTTTTTTTTTTTTTTTTTTTTTTTTTT")
 
 fileNameList = os.listdir("../data/images/pic")
 wakeupList = os.listdir("../data/voices/wakeup")
-wakeupSended = False
+
+#创建进程执行定时任务
+t1 = threading.Thread(target=scheduleWork)
+t1.start()
 
 while True:
-
-    now = datetime.datetime.now()
-    if wakeupSended == False and now.hour == 8:
-        sendGroupMessage(id="617092385", message="[CQ:record,file=./wakeup/{}]".format(wakeupList[(now.day)%5]))
-        wakeupSended = True
-    if wakeupSended == True and now.hour == 0:
-        wakeupSended =False
-
     rev = rev_msg()
     print("rev = ",end="")
     print(rev)
@@ -504,3 +510,9 @@ while True:
                             sendGroupMessage(id = rev['group_id'],message=msg)
                 elif checkAndGetPic(rawMessage,fileNameList).isspace() == False:
                     sendGroupMessage(id=rev['group_id'],message=checkAndGetPic(rawMessage,fileNameList))
+    elif rev !=None and rev['post_type'] == 'notice':
+        if rev['notice_type'] == 'group_ban':
+            if rev['sub_type'] == 'ban':
+                sendGroupMessage(id=rev['group_id'], message="好似喵 好似喵")
+            elif rev['sub_type'] == 'lift_ban':
+                sendGroupMessage(id=rev['group_id'], message="好活喵 好活喵")
