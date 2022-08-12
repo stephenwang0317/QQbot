@@ -503,3 +503,34 @@
 18:16:40.255603 db@janitor F·6 G·1
 18:16:40.255603 db@janitor removing table-115
 18:16:40.255603 db@open done T·22.7159ms
+=============== Aug 8, 2022 (CST) ===============
+12:21:05.175549 memdb@flush N·173 S·31KiB
+12:21:05.186881 memdb@flush created L0@136 N·173 S·20KiB "\x00D\x8f\x91,v3463":"\xffg\xa5v,v3529"
+12:21:05.192139 version@stat F·[3 1] S·398KiB[44KiB 353KiB] Sc·[0.75 0.00]
+12:21:05.194995 memdb@flush committed F·1 T·19.4459ms
+12:21:05.194995 journal@remove removed @133
+=============== Aug 10, 2022 (CST) ===============
+02:10:04.630133 memdb@flush N·145 S·31KiB
+02:10:04.637120 memdb@flush created L0@138 N·145 S·20KiB "\x02\x021\xc8,v3579":"\xfe\xa5\xcfA,v3638"
+02:10:04.637120 version@stat F·[4 1] S·419KiB[65KiB 353KiB] Sc·[1.00 0.00]
+02:10:04.639674 memdb@flush committed F·1 T·9.5409ms
+02:10:04.639674 journal@remove removed @135
+02:10:04.639674 table@compaction L0·4 -> L1·1 S·419KiB Q·3716
+02:10:04.668007 table@build created L1@139 N·3489 S·418KiB "\x00 \xe3T,v3023":"\xff\xfdJ\xd7,v1185"
+02:10:04.668007 version@stat F·[0 1] S·418KiB[0B 418KiB] Sc·[0.00 0.00]
+02:10:04.671051 table@compaction committed F-4 S-425B Ke·0 D·11 T·31.3763ms
+02:10:04.671051 table@remove removed @138
+02:10:04.671051 table@remove removed @136
+02:10:04.671051 table@remove removed @131
+02:10:04.672031 table@remove removed @129
+=============== Aug 11, 2022 (CST) ===============
+16:00:46.823447 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:00:46.837297 version@stat F·[0 1] S·418KiB[0B 418KiB] Sc·[0.00 0.00]
+16:00:46.837297 db@open opening
+16:00:46.837297 journal@recovery F·1
+16:00:46.837297 journal@recovery recovering @137
+16:00:46.842338 memdb@flush created L0@140 N·84 S·12KiB "\x02\xec\xd8\x11,v3734":"\xff\x89L\xaf,v3771"
+16:00:46.843307 version@stat F·[1 1] S·431KiB[12KiB 418KiB] Sc·[0.25 0.00]
+16:00:46.854990 db@janitor F·5 G·1
+16:00:46.854990 db@janitor removing table-132
+16:00:46.854990 db@open done T·17.6925ms

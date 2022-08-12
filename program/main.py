@@ -309,12 +309,13 @@ def getAvaVoice():
     msg = '[CQ:record,file=./ava/{}]'.format(filename)
     return msg
 
-def sendWakeUp(day):
-    sendGroupMessage(id="617092385", message="[CQ:record,file=./wakeup/{}]".format(wakeupList[day]))
+def sendWakeUp():
+    now = datetime.datetime.now()
+    print(now.day)
+    sendGroupMessage(id="617092385", message="[CQ:record,file=./wakeup/{}]".format(wakeupList[(now.day)%5]))
 
 def scheduleWork():
-    now = datetime.datetime.now()
-    schedule.every().day.at("08:00").do(sendWakeUp,(now.day)%5)
+    schedule.every().day.at("08:00").do(sendWakeUp)
     while True:
         schedule.run_pending()
         time.sleep(1)
@@ -332,6 +333,7 @@ print("STARTTTTTTTTTTTTTTTTTTTTTTTTTTT")
 
 fileNameList = os.listdir("../data/images/pic")
 wakeupList = os.listdir("../data/voices/wakeup")
+print(wakeupList)
 
 #创建进程执行定时任务
 t1 = threading.Thread(target=scheduleWork)

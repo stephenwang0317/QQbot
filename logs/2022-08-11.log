@@ -1,0 +1,49 @@
+[2022-08-11 00:06:22] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:06:39] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:10:21] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:10:46] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:10:57] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:11:13] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:11:55] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:12:02] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 00:12:05] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 06:34:37] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 11:56:02] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 11:56:17] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 13:01:15] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 15:31:09] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 1 次重试 
+[2022-08-11 15:31:16] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 2 次重试 
+[2022-08-11 15:31:22] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 3 次重试 
+[2022-08-11 15:31:29] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 4 次重试 
+[2022-08-11 15:31:35] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 5 次重试 
+[2022-08-11 15:31:42] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 6 次重试 
+[2022-08-11 15:31:48] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 7 次重试 
+[2022-08-11 15:31:55] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 8 次重试 
+[2022-08-11 15:32:01] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 9 次重试 
+[2022-08-11 15:32:08] [WARNING]: 上报 Event 数据到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 将进行第 10 次重试 
+[2022-08-11 15:32:14] [WARNING]: 上报 Event 数据 {"post_type":"notice","notice_type":"notify","time":1660203064,"self_id":2132763277,"sub_type":"honor","group_id":617092385,"user_id":1327179361,"honor_type":"talkative"}
+ 到 http://127.0.0.1:5701/ 失败: Post "http://127.0.0.1:5701/": context deadline exceeded (Client.Timeout exceeded while awaiting headers) 停止上报：已达重试上限 
+[2022-08-11 16:00:47] [WARNING]: Protocol -> device lock is disable. http api may fail. 
+[2022-08-11 16:13:43] [ERROR]: Protocol -> unexpected disconnect: EOF 
+[2022-08-11 16:19:50] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 16:21:34] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 16:22:54] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 16:23:05] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 16:26:26] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 16:26:29] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:28:57] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:31:46] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:32:02] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:32:59] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:34:15] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:34:35] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:35:07] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:40:49] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:56:00] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:57:20] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 21:59:43] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 22:03:01] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 22:03:35] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 22:12:05] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 22:12:30] [WARNING]: 群消息发送失败: 信息为空. 
+[2022-08-11 22:15:29] [WARNING]: 群消息发送失败: 信息为空. 
