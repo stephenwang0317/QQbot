@@ -18,7 +18,7 @@ def request_to_json(msg):
 #需要循环执行，返回值为json格式
 def rev_msg():# json or None
     Client, Address = ListenSocket.accept()
-    Request = Client.recv(10240).decode(encoding='utf-8')
+    Request = Client.recv(1024).decode(encoding='utf-8')
     rev_json=request_to_json(Request)
     Client.sendall((HttpResponseHeader).encode(encoding='utf-8'))
     Client.close()

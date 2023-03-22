@@ -13,7 +13,7 @@ import socket
 from bs4 import BeautifulSoup
 from receive import rev_msg
 from Baidu_Text_transAPI import translate
-
+from ehentai import EHentaiApi
 
 def sendPrivateMessage(id,message):
     #print("id = "+ str(id))
@@ -339,6 +339,8 @@ print(wakeupList)
 t1 = threading.Thread(target=scheduleWork)
 t1.start()
 
+obj = EHentaiApi()
+
 while True:
     rev = rev_msg()
     print("rev = ",end="")
@@ -476,6 +478,12 @@ while True:
                     sendPrivateMessage(id=rev['user_id'],message=getAvaVoice())
                 elif rev['message_type'] == 'group':
                     sendGroupMessage(id=rev['group_id'],message=getAvaVoice())
+            elif deMessage['exp'] == '本子':
+                if rev['message_type'] == 'private':
+                    sendPrivateMessage(id=rev['user_id'],message=obj.generate_msg(obj.search(deMessage['param'])))
+                elif rev['message_type'] == 'group':
+                    sendGroupMessage(id=rev['group_id'],message=obj.generate_msg(obj.search(deMessage['param'])))
+
             #未知指令
             else:
                 if rev['message_type'] == 'private':

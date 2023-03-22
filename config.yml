@@ -1,8 +1,8 @@
-﻿# go-cqhttp 默认配置文件
+# go-cqhttp 默认配置文件
 
 account: # 账号相关
   uin: 2132763277 # QQ账号
-  password:  # 密码为空时使用扫码登录
+  password: 'wjm2000317.' # 密码为空时使用扫码登录
   encrypt: false  # 是否开启密码加密
   status: 0      # 在线状态 请参考 https://docs.go-cqhttp.org/guide/config.html#在线状态
   relogin: # 重连设置
@@ -14,7 +14,7 @@ account: # 账号相关
   # 注意, 此设置可能导致在海外服务器上连接情况更差
   use-sso-address: true
   # 是否允许发送临时会话消息
-  allow-temp-session: true
+  allow-temp-session: false
 
 heartbeat:
   # 心跳频率, 单位秒
@@ -107,5 +107,5 @@ servers:
       #  retries-interval: 1500 # 重试时间，单位毫秒，0 时立即
       - url: http://127.0.0.1:5701/ # 地址
         secret: ''                  # 密钥
-        max-retries: 10             # 最大重试，0 时禁用
+        max-retries: 0             # 最大重试，0 时禁用
       #  retries-interval: 1000      # 重试时间，单位毫秒，0 时立即

@@ -1,0 +1,10 @@
+[2022-11-13 23:18:04] [WARNING]: 恢复会话失败: exchange_emp failed: 15 , 尝试使用正常流程登录. 
+[2022-11-13 23:18:06] [WARNING]: 登录需要滑条验证码, 请选择验证方式:  
+[2022-11-13 23:18:06] [WARNING]: 1. 使用浏览器抓取滑条并登录 
+[2022-11-13 23:18:06] [WARNING]: 2. 使用手机QQ扫码验证 (需要手Q和gocq在同一网络下). 
+[2022-11-13 23:18:06] [WARNING]: 请输入(1 - 2) (将在10秒后自动选择1)： 
+[2022-11-13 23:18:16] [WARNING]: 请前往该地址验证 -> https://captcha.go-cqhttp.org/captcha?id=f2hPZArQ&style=simple&aid=16&uin=2132763277&sid=6419028895570397870&cap_cd=AvknxDFHAi04weYYQ6zwgT8uZ56SgDN_T2LOsxPSA1zIpxjgUD8Cyg**&clientype=1&apptype=2 
+[2022-11-13 23:18:49] [WARNING]: 登录需要滑条验证码, 请选择验证方式:  
+[2022-11-13 23:18:49] [WARNING]: 1. 使用浏览器抓取滑条并登录 
+[2022-11-13 23:18:49] [WARNING]: 2. 使用手机QQ扫码验证 (需要手Q和gocq在同一网络下). 
+[2022-11-13 23:18:49] [WARNING]: 请输入(1 - 2) (将在10秒后自动选择1)： 
