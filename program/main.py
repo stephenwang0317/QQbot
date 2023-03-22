@@ -343,8 +343,7 @@ obj = EHentaiApi()
 
 while True:
     rev = rev_msg()
-    print("rev = ",end="")
-    print(rev)
+    print("rev = ", rev)
     if rev != None and rev['post_type'] == 'message':   #消息
         rawMessage = rev['raw_message']
         if rawMessage.startswith('/'):  #指令
