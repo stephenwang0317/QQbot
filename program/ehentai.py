@@ -52,14 +52,6 @@ class EHentaiApi:
         }
         self.search_length_limit = 5
         self.top_length_limit = 10
-        self.search_info = {
-            "title": "",
-            "img_url": "",
-            "page_url": ""
-        }
-        self.error_info = {
-            "error": ""
-        }
         self.fun_map = {
             "s": [self.search, "/本子 s 名字，搜索特定本子"],
             "top": [self.get_top, "/本子 top，获取热门"],
@@ -69,6 +61,7 @@ class EHentaiApi:
     def search(self, param) -> str:
         """
 
+        :param param: List[p1,p2,...,pn], px:str
         :param query: search keyword
         :return: Json, {"title":"","url":""}
         """
@@ -137,7 +130,12 @@ class EHentaiApi:
         return obj.serialize()
 
     def choose_fun(self, params: list) -> str:
-        func = self.fun_map.get(params[1])[0]
+        func = self.fun_map.get(params[1])
+        if func is None:
+            return self.generate_msg([ErrorInfo("未知命令")])
+        else:
+            func = func[0]
+
         return func(params)
 
 
