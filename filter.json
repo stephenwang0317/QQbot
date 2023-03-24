@@ -1,5 +1,0 @@
-{
-    "post_type": {
-        ".neq": "meta_event"
-    }
-}

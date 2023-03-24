@@ -1,4 +1,9 @@
-data/image.db.lock
-data/video.db.lock
-data/leveldb-v3/LOCK
+data/leveldb-v3
+data/cache
+data/*.db
+data/*.lock
 config.yml
+device.json
+filter.json
+*.bat
+*.exe
