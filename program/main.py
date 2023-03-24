@@ -15,11 +15,13 @@ from receive import rev_msg
 from Baidu_Text_transAPI import translate
 from ehentai import EHentaiApi
 from temp_file import Decoder
-from send_msg import sendPrivateMessage, sendGroupMessage, send_msg
+from send_msg import sendPrivateMessage, sendGroupMessage, send_msg, get_reply_msg
+from vtuber_voice import VoiceApi
+from get_picture import PictureApi
 
 
 def decodeExp(exp):  # exp = raw_message
-    tmp = exp.strip('/')
+    tmp = exp.strip('#')
     str = tmp.split(" ", 1)
     if (len(str) == 1):
         str.append(" ")
@@ -45,7 +47,8 @@ def getSetu(tag, flag):
         'tag': tag
     }
     url = 'https://api.lolicon.app/setu/v2'
-    r = requests.get(url=url, params=data)
+    r = requests.get(url=url, params=data,
+                     proxies={'http': 'http://127.0.0.1:7890/', 'https': 'http://127.0.0.1:7890/'})
     print(r.text)
     return r
 
@@ -200,61 +203,6 @@ def getTuwei():
     return str
 
 
-def getDog():
-    url = 'https://dog.ceo/api/breeds/image/random'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = requests.get(url=url)
-    newJson = r.json()
-    msg = ""
-    if newJson['status'] == "success":
-        msg = " [CQ:image,timeout=5,file={}]".format(newJson['message'])
-    else:
-        msg = "网络错误"
-    return msg
-
-
-def getDuck():
-    url = 'https://random-d.uk/api/v2/random'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = requests.get(url=url)
-    newJson = r.json()
-    msg = ""
-    msg = " [CQ:image,timeout=5,file={}]".format(newJson['url'])
-    return msg
-
-
-def getCat():
-    url = 'https://api.thecatapi.com/v1/images/search?size=thumb'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = requests.get(url=url)
-    newJson = r.json()
-    msg = ""
-    msg = " [CQ:image,timeout=5,file={}]".format(newJson[0]['url'])
-    return msg
-
-
-def getFox():
-    url = 'https://randomfox.ca/floof/'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = requests.get(url=url, headers=headers)
-    newJson = r.json()
-    msg = ""
-    msg = " [CQ:image,timeout=5,file={}]".format(newJson['image'])
-    return msg
-
-
 def checkAndGetPic(msg, tagList):
     print("checkAndGetPic")
     ret = ""
@@ -266,55 +214,6 @@ def checkAndGetPic(msg, tagList):
             ret = "[CQ:image,file={},subType=1]".format(filePath)
     print(ret)
     return ret
-
-
-def getTaffyVoice():
-    list2 = os.listdir("../data/voices/taffy")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./taffy/{}]'.format(filename)
-    return msg
-
-
-def getBellaVoice():
-    list2 = os.listdir("../data/voices/bella")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./bella/{}]'.format(filename)
-    return msg
-
-
-def getDianaVoice():
-    list2 = os.listdir("../data/voices/diana")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./diana/{}]'.format(filename)
-    return msg
-
-
-def getNanamiVoice():
-    list2 = os.listdir("../data/voices/nanami")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./nanami/{}]'.format(filename)
-    return msg
-
-
-def getHanjianVoice():
-    list2 = os.listdir("../data/voices/dongxuelian")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./dongxuelian/{}]'.format(filename)
-    return msg
-
-
-def getAziVoice():
-    list2 = os.listdir("../data/voices/azi")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./azi/{}]'.format(filename)
-    return msg
-
-
-def getAvaVoice():
-    list2 = os.listdir("../data/voices/ava")
-    filename = list2[random.randint(0, len(list2) - 1)]
-    msg = '[CQ:record,file=./ava/{}]'.format(filename)
-    return msg
 
 
 def sendWakeUp():
@@ -348,16 +247,18 @@ print(wakeupList)
 t1 = threading.Thread(target=scheduleWork)
 t1.start()
 
-obj = EHentaiApi()
+ehantai = EHentaiApi()
+voice = VoiceApi()
 decoder = Decoder()
+picture = PictureApi()
 
 while True:
     rev = rev_msg()
     print("rev = ", rev)
     if rev != None and rev['post_type'] == 'message':  # 消息
         rawMessage = rev['raw_message']
-        if rawMessage.startswith('/'):  # 指令
-
+        if rawMessage.startswith('#'):  # 指令
+            params = decoder.process(rawMessage)
             deMessage = decodeExp(rawMessage)
             # 番号指令
             if deMessage['exp'] == '番号':
@@ -426,56 +327,16 @@ while True:
                     sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getTuwei())
                 elif rev['message_type'] == 'group':
                     sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getTuwei())
-            # 狗指令
-            elif deMessage['exp'] == '狗':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getDog())
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getDog())
-            # 鸭指令
-            elif deMessage['exp'] == '鸭子':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getDuck())
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getDuck())
-            # 猫
-            elif deMessage['exp'] == '猫':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getCat())
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getCat())
-            # 狐狸指令
-            elif deMessage['exp'] == '狐狸':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getFox())
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getFox())
-            # 塔菲指令
-            elif deMessage['exp'] == '塔菲':
-                send_msg(rev, getTaffyVoice())
-            # 贝拉指令
-            elif deMessage['exp'] == '贝拉':
-                send_msg(rev, getBellaVoice())
-            elif deMessage['exp'] == '嘉然':
-                send_msg(rev, getDianaVoice())
-            elif deMessage['exp'] == '七海':
-                send_msg(rev, getNanamiVoice())
-            elif deMessage['exp'] == '东雪莲':
-                send_msg(rev, getHanjianVoice())
-            elif deMessage['exp'] == '阿梓':
-                send_msg(rev, getAziVoice())
-            elif deMessage['exp'] == '向晚':
-                send_msg(rev, getAvaVoice())
+            elif deMessage['exp'] in picture.instruct_list:
+                send_msg(rev, message=(picture.choose_fun(params) + get_reply_msg(rev)))
+            elif deMessage['exp'] in voice.instruct_list:
+                send_msg(rev, voice.choose_fun(params))
             elif deMessage['exp'] == '本子':
-                params = decoder.process(rawMessage)
-                send_msg(rev=rev, message=obj.choose_fun(params))
-
+                send_msg(rev=rev, message=ehantai.choose_fun(params))
             # 未知指令
             else:
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message="听不懂")
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message="听不懂")
+                send_msg(rev=rev, message="听不懂")
+
         elif rev != None:  # 非指令
             if rev['message_type'] == 'private':
                 msg = checkAndGetPic(rawMessage, fileNameList)

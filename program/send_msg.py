@@ -29,3 +29,7 @@ def send_msg(rev, message):
         sendPrivateMessage(id=rev['user_id'], message=message)
     elif rev['message_type'] == 'group':
         sendGroupMessage(id=rev['group_id'], message=message)
+
+
+def get_reply_msg(rev):
+    return "[CQ:reply,id={id}][CQ:at,qq={qq}] ".format(id=rev['message_id'], qq=rev['user_id'])

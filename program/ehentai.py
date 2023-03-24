@@ -12,8 +12,9 @@ class SearchInfo:
     def serialize(self):
         msg = ""
         msg = msg + self.title + "\n"
-        msg = msg + "[CQ:image,file={}]".format(self.img) + "\n"
         msg = msg + "链接: " + self.page + "\n"
+        msg = msg + "[CQ:image,file={}]".format(self.img) + "\n"
+        msg = msg + "-----------\n"
         return msg
 
 
@@ -130,9 +131,12 @@ class EHentaiApi:
         return obj.serialize()
 
     def choose_fun(self, params: list) -> str:
-        func = self.fun_map.get(params[1])
+        if len(params) == 1:
+            func = None
+        else:
+            func = self.fun_map.get(params[1])
         if func is None:
-            return self.generate_msg([ErrorInfo("未知命令")])
+            return self.generate_msg([ErrorInfo("未知命令")]) + '\n' + HelpInfo(self.fun_map).serialize()
         else:
             func = func[0]
 
