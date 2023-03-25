@@ -18,6 +18,12 @@ from temp_file import Decoder
 from send_msg import sendPrivateMessage, sendGroupMessage, send_msg, get_reply_msg
 from vtuber_voice import VoiceApi
 from get_picture import PictureApi
+from get_text import TextApi
+
+proxy2 = {
+    'http': 'http://127.0.0.1:7890/',
+    'https': 'http://127.0.0.1:7890/'
+}
 
 
 def decodeExp(exp):  # exp = raw_message
@@ -40,19 +46,6 @@ def getCQParam(message):  # message = raw_message
     return re.findall('=(.+?)[,\]]', message)
 
 
-def getSetu(tag, flag):
-    data = {
-        'r18': flag,
-        'size': 'small',
-        'tag': tag
-    }
-    url = 'https://api.lolicon.app/setu/v2'
-    r = requests.get(url=url, params=data,
-                     proxies={'http': 'http://127.0.0.1:7890/', 'https': 'http://127.0.0.1:7890/'})
-    print(r.text)
-    return r
-
-
 def getCover(query):
     url = 'https://avmoo.click/cn/search/' + query  # 手动拼接
     headers = {
@@ -63,7 +56,7 @@ def getCover(query):
     i = 0
     while len(txt) == 0 and i < 20:
         try:
-            r = requests.get(url=url, headers=headers)
+            r = requests.get(url=url, headers=headers, proxies=proxy2)
             txt = r.text
             # print(txt)
             r.close()
@@ -146,7 +139,7 @@ def getActress(page):
     }
     while len(txt) == 0 and i < 10:
         try:
-            r = requests.get(url=url, headers=headers)
+            r = requests.get(url=url, headers=headers, proxies=proxy2)
             txt = r.text
             r.close()
         except:
@@ -161,46 +154,6 @@ def getActress(page):
     if msg.isspace():
         msg = "被反爬"
     return msg
-
-
-def getRubbish():
-    url = 'https://act.jiawei.xin:10086/lib/api/maren.php?catalog=yang&format=json'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    try:
-        r = requests.get(url=url, timeout=5)
-        newJson = r.json()
-        return newJson['text']
-    except Exception as e:
-        return "超时"
-
-
-def getEasyRubbish():
-    url = 'https://act.jiawei.xin:10086/lib/api/maren.php?catalog=qiu&format=json'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    try:
-        r = requests.get(url=url)
-        newJson = r.json()
-        return newJson['text']
-    except Exception as e:
-        return "超时"
-
-
-def getTuwei():
-    url = 'https://api.1314.cool/words/api.php?return=json'
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
-    }
-    r = requests.get(url=url)
-    newJson = r.json()
-    str = newJson['word'].replace("<br>", "")
-    return str
 
 
 def checkAndGetPic(msg, tagList):
@@ -247,15 +200,17 @@ print(wakeupList)
 t1 = threading.Thread(target=scheduleWork)
 t1.start()
 
+bot_qqnumber = requests.get("http://127.0.0.1:5700/get_login_info").json().get('data').get('user_id')
 ehantai = EHentaiApi()
 voice = VoiceApi()
 decoder = Decoder()
 picture = PictureApi()
+text = TextApi()
 
 while True:
     rev = rev_msg()
-    print("rev = ", rev)
-    if rev != None and rev['post_type'] == 'message':  # 消息
+    if rev is not None and rev['post_type'] == 'message':  # 消息
+        print(rev)
         rawMessage = rev['raw_message']
         if rawMessage.startswith('#'):  # 指令
             params = decoder.process(rawMessage)
@@ -275,58 +230,16 @@ while True:
                         message=msg
                     )
 
-            # 色图指令   /色图
-            elif deMessage['exp'] == '来点色图' or deMessage['exp'] == '色图':
-                retVal = json.loads(getSetu(deMessage['param'], 1).text)
-                if (len(retVal['data']) == 0):  # 没查询到
-                    src = "http://rcbqb.ccmeng.com:66/tp/dt/cqwm4bnprm1.jpg"
-                else:
-                    src = retVal['data'][0]['urls']['small']
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(
-                        id=rev['user_id'],
-                        message='[CQ:image,file={}]'.format(src)
-                    )
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(
-                        id=rev['group_id'],
-                        message='[CQ:image,file={}]'.format(src)
-                    )
-
-            # 翻译指令
-            elif deMessage['exp'] == '翻译':
-                ans = translate(deMessage['param'])
-                msg = getReplyMsg(rev) + ans['trans_result'][0]['dst']
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=msg)
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=msg)
-
             # 磁力指令
             elif deMessage['exp'] == '磁力':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getMagnet(deMessage['param']))
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getMagnet(deMessage['param']))
+                send_msg(rev, message=getReplyMsg(rev) + getMagnet(deMessage['param']))
 
             # 老师指令
             elif deMessage['exp'] == '老师':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getActress(deMessage['param']))
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getActress(deMessage['param']))
-            # 求喷指令
-            elif deMessage['exp'] == '求喷':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getRubbish())
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getRubbish())
-            # 求夸指令
-            elif deMessage['exp'] == '求夸':
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(id=rev['user_id'], message=getReplyMsg(rev) + getTuwei())
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(id=rev['group_id'], message=getReplyMsg(rev) + getTuwei())
+                send_msg(rev, message=getReplyMsg(rev) + getActress(deMessage['param']))
+
+            elif deMessage['exp'] in text.instruct_list:
+                send_msg(rev, message=(text.choose_fun(params) + get_reply_msg(rev)))
             elif deMessage['exp'] in picture.instruct_list:
                 send_msg(rev, message=(picture.choose_fun(params) + get_reply_msg(rev)))
             elif deMessage['exp'] in voice.instruct_list:
@@ -352,20 +265,20 @@ while True:
                     if (qqnumber == str(rev["self_id"])):  # at Bot
                         sendGroupMessage(id=rev['group_id'],
                                          message=staticReply[random.randint(0, len(staticReply) - 1)])
-                    elif re.search('^\[CQ:(.+?)\] 喷他', rawMessage) != None:
-                        msg = "[CQ:at,qq={}] ".format(qqnumber)
-                        msg = msg + getRubbish()
-                        if qqnumber == "1600842796":
-                            sendGroupMessage(id=rev['group_id'], message="不能喷主人")
-                        else:
-                            sendGroupMessage(id=rev['group_id'], message=msg)
-                    elif re.search('^\[CQ:(.+?)\] 轻喷', rawMessage) != None:
-                        msg = "[CQ:at,qq={}] ".format(qqnumber)
-                        msg = msg + getEasyRubbish()
-                        if qqnumber == "1600842796":
-                            sendGroupMessage(id=rev['group_id'], message="不能喷主人")
-                        else:
-                            sendGroupMessage(id=rev['group_id'], message=msg)
+                    # elif re.search('^\[CQ:(.+?)\] 喷他', rawMessage) != None:
+                    #     msg = "[CQ:at,qq={}] ".format(qqnumber)
+                    #     msg = msg + getRubbish()
+                    #     if qqnumber == "1600842796":
+                    #         sendGroupMessage(id=rev['group_id'], message="不能喷主人")
+                    #     else:
+                    #         sendGroupMessage(id=rev['group_id'], message=msg)
+                    # elif re.search('^\[CQ:(.+?)\] 轻喷', rawMessage) != None:
+                    #     msg = "[CQ:at,qq={}] ".format(qqnumber)
+                    #     msg = msg + getEasyRubbish()
+                    #     if qqnumber == "1600842796":
+                    #         sendGroupMessage(id=rev['group_id'], message="不能喷主人")
+                    #     else:
+                    #         sendGroupMessage(id=rev['group_id'], message=msg)
                 elif checkAndGetPic(rawMessage, fileNameList).isspace() == False:
                     sendGroupMessage(id=rev['group_id'], message=checkAndGetPic(rawMessage, fileNameList))
     elif rev != None and rev['post_type'] == 'notice':

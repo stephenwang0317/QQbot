@@ -11,7 +11,7 @@ def sendPrivateMessage(id, message):
     }
     api_url = 'http://127.0.0.1:5700/send_private_msg'
     r = requests.post(api_url, data=data)
-    print("r = " + r.text)
+    print("发送私聊 = " + r.text)
 
 
 def sendGroupMessage(id, message):
@@ -22,7 +22,7 @@ def sendGroupMessage(id, message):
     }
     api_url = 'http://127.0.0.1:5700/send_group_msg'
     r = requests.post(api_url, data=data)
-
+    print("发送群聊 = " + r.text)
 
 def send_msg(rev, message):
     if rev['message_type'] == 'private':
@@ -32,4 +32,4 @@ def send_msg(rev, message):
 
 
 def get_reply_msg(rev):
-    return "[CQ:reply,id={id}][CQ:at,qq={qq}] ".format(id=rev['message_id'], qq=rev['user_id'])
+    return "[CQ:reply,id={id}]".format(id=rev['message_id'])

@@ -16,16 +16,18 @@ appkey = '2cerscScg2ko8hXRGqxy'
 
 # For list of language codes, please refer to `https://api.fanyi.baidu.com/doc/21`
 from_lang = 'auto'
-to_lang =  'zh'
+to_lang = 'zh'
 
 endpoint = 'http://api.fanyi.baidu.com'
 path = '/api/trans/vip/translate'
 url = endpoint + path
 
+
 def make_md5(s, encoding='utf-8'):
     return md5(s.encode(encoding)).hexdigest()
 
-def translate(query):
+
+def translate(query, proxies):
     # Generate salt and sign
     salt = random.randint(32768, 65536)
     sign = make_md5(appid + query + str(salt) + appkey)
@@ -35,6 +37,6 @@ def translate(query):
     payload = {'appid': appid, 'q': query, 'from': from_lang, 'to': to_lang, 'salt': salt, 'sign': sign}
 
     # Send request
-    r = requests.post(url, params=payload, headers=headers)
+    r = requests.post(url, params=payload, headers=headers, proxies=proxies)
     result = r.json()
     return result
