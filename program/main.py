@@ -19,6 +19,7 @@ from send_msg import sendPrivateMessage, sendGroupMessage, send_msg, get_reply_m
 from vtuber_voice import VoiceApi
 from get_picture import PictureApi
 from get_text import TextApi
+from javdb import JavDb
 
 proxy2 = {
     'http': 'http://127.0.0.1:7890/',
@@ -206,6 +207,7 @@ voice = VoiceApi()
 decoder = Decoder()
 picture = PictureApi()
 text = TextApi()
+javdb = JavDb()
 
 while True:
     rev = rev_msg()
@@ -217,18 +219,7 @@ while True:
             deMessage = decodeExp(rawMessage)
             # 番号指令
             if deMessage['exp'] == '番号':
-                msg = getReplyMsg(rev)
-                msg += getCover(deMessage['param'])
-                if rev['message_type'] == 'private':
-                    sendPrivateMessage(
-                        id=rev['user_id'],
-                        message=msg
-                    )
-                elif rev['message_type'] == 'group':
-                    sendGroupMessage(
-                        id=rev['group_id'],
-                        message=msg
-                    )
+                send_msg(rev, message=(javdb.choose_fun(params) + get_reply_msg(rev)))
 
             # 磁力指令
             elif deMessage['exp'] == '磁力':
