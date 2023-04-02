@@ -63,6 +63,35 @@ class JavDb:
 
         return msg
 
+    def get_actor(self):
+        url = "https://javdb.com/actors"
+        try:
+            r = requests.get(timeout=5, url=url, headers=self.headers, proxies=self.proxies)
+        except:
+            return self.info({"error": "访问失败"})
+
+        fp = open('1.html', 'w', encoding="utf-8")
+        fp.write(r.text)
+        return
+
+        bf = BeautifulSoup(r.text, 'lxml')
+        actors = bf.find_all("div", class_="actors")
+        msg = ""
+        msg += '新人\n'
+        new_actor = actors[0].find_all("div", class_="box actor-box")
+        new_actor = [i.find("a").find("strong").string for i in new_actor]
+        for i in new_actor:
+            msg = msg + i + ','
+        msg += '\n月榜\n'
+        month_top = actors[1].find_all("div", class_="box actor-box")
+        month_top = [i.find("a").find("strong").string for i in month_top]
+        for i in month_top:
+            msg = msg + i + ','
+        msg += '\nFanza(DMM)推薦\n'
+        dmm_recmend = actors[2].find_all("div", class_="box actor-box")
+        dmm_recmend = [i.find("a").find("strong").string for i in dmm_recmend]
+        return msg
+
     def choose_fun(self, params: list) -> str:
         if len(params) == 1:
             return self.info({
@@ -71,3 +100,6 @@ class JavDb:
         else:
             return self.get_cover(params[1])
 
+if __name__ == '__main__':
+    obj = JavDb()
+    obj.get_actor()

@@ -11,7 +11,6 @@ import re
 import schedule
 import socket
 from bs4 import BeautifulSoup
-from receive import rev_msg
 from Baidu_Text_transAPI import translate
 from ehentai import EHentaiApi
 from temp_file import Decoder
@@ -170,111 +169,111 @@ def checkAndGetPic(msg, tagList):
     return ret
 
 
-def sendWakeUp():
-    now = datetime.datetime.now()
-    print(now.day)
-    sendGroupMessage(id="617092385", message="[CQ:record,file=./wakeup/{}]".format(wakeupList[(now.day) % 5]))
+class Bot:
+    def __init__(self):
+        self.staticReply = [
+            "别狗叫",
+            "窝嫩爹",
+            "急了？",
+            "典",
+            "典中典"
+        ]
 
+        print("STARTTTTTTTTTTTTTTTTTTTTTTTTTTT")
 
-def scheduleWork():
-    schedule.every().day.at("08:00").do(sendWakeUp)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+        self.fileNameList = os.listdir("../data/images/pic")
+        self.wakeupList = os.listdir("../data/voices/wakeup")
+        print(self.wakeupList)
 
+        # 创建进程执行定时任务
+        self.t1 = threading.Thread(target=self.scheduleWork)
+        self.t1.start()
 
-staticReply = [
-    "别狗叫",
-    "窝嫩爹",
-    "急了？",
-    "典",
-    "典中典"
-]
+        self.bot_qqnumber = requests.get("http://127.0.0.1:5700/get_login_info").json().get('data').get('user_id')
+        self.ehantai = EHentaiApi()
+        self.voice = VoiceApi()
+        self.decoder = Decoder()
+        self.picture = PictureApi()
+        self.text = TextApi()
+        self.javdb = JavDb()
 
-print("STARTTTTTTTTTTTTTTTTTTTTTTTTTTT")
+    def sendWakeUp(self):
+        now = datetime.datetime.now()
+        print(now.day)
+        sendGroupMessage(id="617092385", message="[CQ:record,file=./wakeup/{}]".format(self.wakeupList[(now.day) % 5]))
 
-fileNameList = os.listdir("../data/images/pic")
-wakeupList = os.listdir("../data/voices/wakeup")
-print(wakeupList)
+    def scheduleWork(self):
+        schedule.every().day.at("08:00").do(self.sendWakeUp)
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
 
-# 创建进程执行定时任务
-t1 = threading.Thread(target=scheduleWork)
-t1.start()
+    def __call__(self, rev):
+        if rev is not None and rev['post_type'] == 'message':  # 消息
+            print(rev)
+            rawMessage = rev['raw_message']
+            if rawMessage.startswith('#'):  # 指令
+                params = self.decoder.process(rawMessage)
+                deMessage = decodeExp(rawMessage)
+                # 番号指令
+                if deMessage['exp'] == '番号':
+                    send_msg(rev, message=(self.javdb.choose_fun(params) + get_reply_msg(rev)))
 
-bot_qqnumber = requests.get("http://127.0.0.1:5700/get_login_info").json().get('data').get('user_id')
-ehantai = EHentaiApi()
-voice = VoiceApi()
-decoder = Decoder()
-picture = PictureApi()
-text = TextApi()
-javdb = JavDb()
+                # 磁力指令
+                elif deMessage['exp'] == '磁力':
+                    send_msg(rev, message=getReplyMsg(rev) + getMagnet(deMessage['param']))
 
-while True:
-    rev = rev_msg()
-    if rev is not None and rev['post_type'] == 'message':  # 消息
-        print(rev)
-        rawMessage = rev['raw_message']
-        if rawMessage.startswith('#'):  # 指令
-            params = decoder.process(rawMessage)
-            deMessage = decodeExp(rawMessage)
-            # 番号指令
-            if deMessage['exp'] == '番号':
-                send_msg(rev, message=(javdb.choose_fun(params) + get_reply_msg(rev)))
+                # 老师指令
+                elif deMessage['exp'] == '老师':
+                    send_msg(rev, message=getReplyMsg(rev) + getActress(deMessage['param']))
 
-            # 磁力指令
-            elif deMessage['exp'] == '磁力':
-                send_msg(rev, message=getReplyMsg(rev) + getMagnet(deMessage['param']))
-
-            # 老师指令
-            elif deMessage['exp'] == '老师':
-                send_msg(rev, message=getReplyMsg(rev) + getActress(deMessage['param']))
-
-            elif deMessage['exp'] in text.instruct_list:
-                send_msg(rev, message=(text.choose_fun(params) + get_reply_msg(rev)))
-            elif deMessage['exp'] in picture.instruct_list:
-                send_msg(rev, message=(picture.choose_fun(params) + get_reply_msg(rev)))
-            elif deMessage['exp'] in voice.instruct_list:
-                send_msg(rev, voice.choose_fun(params))
-            elif deMessage['exp'] == '本子':
-                send_msg(rev=rev, message=ehantai.choose_fun(params))
-            # 未知指令
-            else:
-                send_msg(rev=rev, message="听不懂")
-
-        elif rev != None:  # 非指令
-            if rev['message_type'] == 'private':
-                msg = checkAndGetPic(rawMessage, fileNameList)
-                if (msg == ""):
-                    print("here1")
-                    sendPrivateMessage(id=rev['user_id'], message=staticReply[random.randint(0, len(staticReply) - 1)])
+                elif deMessage['exp'] in self.text.instruct_list:
+                    send_msg(rev, message=(self.text.choose_fun(params) + get_reply_msg(rev)))
+                elif deMessage['exp'] in self.picture.instruct_list:
+                    send_msg(rev, message=(self.picture.choose_fun(params) + get_reply_msg(rev)))
+                elif deMessage['exp'] in self.voice.instruct_list:
+                    send_msg(rev, self.voice.choose_fun(params))
+                elif deMessage['exp'] == '本子':
+                    send_msg(rev=rev, message=self.ehantai.choose_fun(params))
+                # 未知指令
                 else:
-                    print("here2")
-                    sendPrivateMessage(id=rev['user_id'], message=msg)
-            elif rev['message_type'] == 'group':
-                if (checkCQCode(rawMessage) and getCQCode(rawMessage) == 'at'):  # at
-                    qqnumber = getCQParam(rawMessage)[0]
-                    if (qqnumber == str(rev["self_id"])):  # at Bot
-                        sendGroupMessage(id=rev['group_id'],
-                                         message=staticReply[random.randint(0, len(staticReply) - 1)])
-                    # elif re.search('^\[CQ:(.+?)\] 喷他', rawMessage) != None:
-                    #     msg = "[CQ:at,qq={}] ".format(qqnumber)
-                    #     msg = msg + getRubbish()
-                    #     if qqnumber == "1600842796":
-                    #         sendGroupMessage(id=rev['group_id'], message="不能喷主人")
-                    #     else:
-                    #         sendGroupMessage(id=rev['group_id'], message=msg)
-                    # elif re.search('^\[CQ:(.+?)\] 轻喷', rawMessage) != None:
-                    #     msg = "[CQ:at,qq={}] ".format(qqnumber)
-                    #     msg = msg + getEasyRubbish()
-                    #     if qqnumber == "1600842796":
-                    #         sendGroupMessage(id=rev['group_id'], message="不能喷主人")
-                    #     else:
-                    #         sendGroupMessage(id=rev['group_id'], message=msg)
-                elif checkAndGetPic(rawMessage, fileNameList).isspace() == False:
-                    sendGroupMessage(id=rev['group_id'], message=checkAndGetPic(rawMessage, fileNameList))
-    elif rev != None and rev['post_type'] == 'notice':
-        if rev['notice_type'] == 'group_ban':
-            if rev['sub_type'] == 'ban':
-                sendGroupMessage(id=rev['group_id'], message="好似喵 好似喵")
-            elif rev['sub_type'] == 'lift_ban':
-                sendGroupMessage(id=rev['group_id'], message="好活喵 好活喵")
+                    send_msg(rev=rev, message="听不懂")
+
+            elif rev != None:  # 非指令
+                if rev['message_type'] == 'private':
+                    msg = checkAndGetPic(rawMessage, self.fileNameList)
+                    if (msg == ""):
+                        print("here1")
+                        sendPrivateMessage(id=rev['user_id'],
+                                           message=self.staticReply[random.randint(0, len(self.staticReply) - 1)])
+                    else:
+                        print("here2")
+                        sendPrivateMessage(id=rev['user_id'], message=msg)
+                elif rev['message_type'] == 'group':
+                    if (checkCQCode(rawMessage) and getCQCode(rawMessage) == 'at'):  # at
+                        qqnumber = getCQParam(rawMessage)[0]
+                        if (qqnumber == str(rev["self_id"])):  # at Bot
+                            sendGroupMessage(id=rev['group_id'],
+                                             message=self.staticReply[random.randint(0, len(self.staticReply) - 1)])
+                        # elif re.search('^\[CQ:(.+?)\] 喷他', rawMessage) != None:
+                        #     msg = "[CQ:at,qq={}] ".format(qqnumber)
+                        #     msg = msg + getRubbish()
+                        #     if qqnumber == "1600842796":
+                        #         sendGroupMessage(id=rev['group_id'], message="不能喷主人")
+                        #     else:
+                        #         sendGroupMessage(id=rev['group_id'], message=msg)
+                        # elif re.search('^\[CQ:(.+?)\] 轻喷', rawMessage) != None:
+                        #     msg = "[CQ:at,qq={}] ".format(qqnumber)
+                        #     msg = msg + getEasyRubbish()
+                        #     if qqnumber == "1600842796":
+                        #         sendGroupMessage(id=rev['group_id'], message="不能喷主人")
+                        #     else:
+                        #         sendGroupMessage(id=rev['group_id'], message=msg)
+                    elif checkAndGetPic(rawMessage, self.fileNameList).isspace() == False:
+                        sendGroupMessage(id=rev['group_id'], message=checkAndGetPic(rawMessage, self.fileNameList))
+        elif rev is not None and rev['post_type'] == 'notice':
+            if rev['notice_type'] == 'group_ban':
+                if rev['sub_type'] == 'ban':
+                    sendGroupMessage(id=rev['group_id'], message="好似喵 好似喵")
+                elif rev['sub_type'] == 'lift_ban':
+                    sendGroupMessage(id=rev['group_id'], message="好活喵 好活喵")
