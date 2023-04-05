@@ -1,5 +1,5 @@
 from flask import Flask, request
-from main import Bot
+from bot import Bot
 from concurrent.futures import ThreadPoolExecutor
 
 HttpResponseHeader = '''HTTP/1.1 200 OK\r\n

@@ -228,10 +228,8 @@ class Bot:
                     send_msg(rev, message=getReplyMsg(rev) + getActress(deMessage['param']))
 
                 elif deMessage['exp'] in self.text.instruct_list:
-                    print("text")
                     send_msg(rev, message=(self.text.choose_fun(params) + get_reply_msg(rev)))
                 elif deMessage['exp'] in self.picture.instruct_list:
-                    print("picture")
                     send_msg(rev, message=(self.picture.choose_fun(params) + get_reply_msg(rev)))
                 elif deMessage['exp'] in self.voice.instruct_list:
                     send_msg(rev, self.voice.choose_fun(params))

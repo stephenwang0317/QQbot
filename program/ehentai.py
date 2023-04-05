@@ -141,3 +141,8 @@ class EHentaiApi:
             func = func[0]
 
         return func(params)
+
+
+if __name__ == "__main__":
+    obj = EHentaiApi()
+    print(obj.choose_fun(["111", "s", "Heartful mama"]))
